@@ -1,0 +1,11 @@
+# Ignorar llaves de seguridad
+serviceAccountKey.json
+.env
+
+# Ignorar archivos de Python
+__pycache__/
+*.py[cod]
+
+# Ignorar carpetas de sistema
+.DS_Store
+node_modules/
