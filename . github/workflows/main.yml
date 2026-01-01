@@ -1,0 +1,24 @@
+name: Zent Trends Updater
+on:
+  schedule:
+    - cron: '0 12 * * *' # Se ejecuta todos los días a las 12:00 UTC
+  workflow_dispatch: # Permite ejecutarlo manualmente
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        run: |
+          pip install firebase-admin pytrends feedparser
+      - name: Run updater
+        run: python trends_engine.py
+        env:
+          # Aquí conectarás tu llave de Firebase de forma segura
+          FIREBASE_KEY: ${{ secrets.FIREBASE_KEY }}
